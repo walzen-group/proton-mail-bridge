@@ -17,6 +17,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 COPY --from=build /src/bridge /usr/local/bin/bridge
 COPY start.sh /usr/local/bin/start.sh
 USER 1000
-ENV HOME=/home/bridge
+ENV HOME=/home/bridge \
+    DBUS_SESSION_BUS_ADDRESS=disabled:
 ENTRYPOINT ["/usr/local/bin/start.sh"]
 CMD ["--noninteractive"]
